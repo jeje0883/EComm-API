@@ -16,7 +16,7 @@ secret = process.env.clientSecret;
 
 //setup middleware
 const corsOptions = {
-    origin: ['http://localhost:3000', 'http://zuitt-bootcamp-prod-460-7841-descalsota.s3-website.us-east-1.amazonaws.com'], 
+    origin: ['http://localhost:3000', 'http://zuitt-bootcamp-prod-460-7841-descalsota.s3-website.us-east-1.amazonaws.com', 'https://e-comm-client-delta.vercel.app'], 
     credentials: true, 
     optionsSuccessStatus: 200 
 };
