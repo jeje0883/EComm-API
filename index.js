@@ -7,6 +7,9 @@ require('dotenv').config();
 const cron = require('node-cron');
 const axios = require('axios'); // Added Axios import
 
+//server ping toggler
+const alwaysAwake = false; //
+
 // Define env config
 const port = process.env.PORT || 3000;
 const mongodb = process.env.MONGODB_STRING;
@@ -56,15 +59,17 @@ app.use("/users", userRoutes);
 app.use("/", publicRoutes); // Use public routes
 
 // Schedule tasks to be run on the server every 14 minutes using Axios
-cron.schedule('*/14 * * * *', function() {
-    axios.get(`${serverUrl}/ping`)
-        .then(response => {
-            console.log('Pinged the server to keep it awake.');
-        })
-        .catch(error => {
-            console.error(`Error pinging server: ${error.message}`);
-        });
-});
+if (alwaysAwake) {
+    cron.schedule('*/14 * * * *', async function () {
+        try {
+            const response = await axios.get(`${serverUrl}/ping`);
+            console.log(`[${new Date().toISOString()}] Pinged the server successfully:`, response.status);
+        } catch (error) {
+            console.error(`[${new Date().toISOString()}] Error pinging server: ${error.message}`);
+        }
+    });
+    console.log('Cron job to keep the server awake has been started.');
+}
 
 // Initialize the server
 if (require.main === module) {
