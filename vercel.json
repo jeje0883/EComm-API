@@ -1,4 +1,4 @@
-// vercel.json
+
 {
     "version": 2,
     "builds": [
@@ -13,5 +13,5 @@
         "dest": "api/serverless.js"
       }
     ]
-  }
+}
   
