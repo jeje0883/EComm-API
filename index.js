@@ -76,10 +76,10 @@ app.get('/', (req, res) => {
 });
 
 // Initialize the server
-if (require.main === module) {
-    app.listen(port, () => {
-        console.log(`API is now online on port ${port}`);
-    });
-}
+// if (require.main === module) {
+//     app.listen(port, () => {
+//         console.log(`API is now online on port ${port}`);
+//     });
+// }
 
 module.exports = { app, mongoose };
